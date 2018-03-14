@@ -4,12 +4,12 @@ let node_modules_path = path.resolve(__dirname, 'node_modules');
 
 module.exports = {
   entry: {
-    app: './src/js/app.js',
-    bootstrap: `${node_modules_path}/bootstrap-sass/assets/javascripts/boostrap.min.js`
+    bundle: './src/js/app.js',
+    bootstrap: `${node_modules_path}/bootstrap-sass/assets/javascripts/bootstrap.min.js`
   },
   output: {
     path: path.resolve(__dirname, 'public/'),
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   module: {
     rules: [
