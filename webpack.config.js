@@ -3,7 +3,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 let node_modules_path = path.resolve(__dirname, 'node_modules');
 
 module.exports = {
-  entry: './src/js/app.js',
+  entry: {
+    app: './src/js/app.js',
+    bootstrap: `${node_modules_path}/bootstrap-sass/assets/javascripts/boostrap.min.js`
+  },
   output: {
     path: path.resolve(__dirname, 'public/'),
     filename: 'bundle.js'

@@ -10,6 +10,13 @@ router.route('/').get((req, res) => {
   res.render('index', data);
 });
 
+router.route('/login').get((req, res) => {
+  var data = {
+    proof: "Here's the proof"
+  }
+  res.render('login', data);
+});
+
 router.use('/api/user', user);
 
 module.exports = router;
