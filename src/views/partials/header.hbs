@@ -47,8 +47,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="/login">Login</a></li>
+            <li class="{{#activePage title "Home"}}{{/activePage}}"><a href="/">Home</a></li>
+            <li class="{{#activePage title "Login"}}{{/activePage}}"><a href="/login">Login</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
               <ul class="dropdown-menu">
@@ -65,7 +65,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Option</a></li>
             <li><a href="#">Option</a></li>
-            <li class="active"><a href="#">Fixed top <span class="sr-only">(current)</span></a></li>
+            <li class="{{#activePage title "Profile"}}{{/activePage}}"><a href="#">Profile</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

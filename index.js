@@ -27,7 +27,13 @@ app.engine('hbs', hbs.express4({
 }));
 app.set('views', path.join(__dirname,'/src/views'));
 
-
+hbs.registerHelper("activePage", function(a, b) {
+  if( a===b ) {
+    return "active";
+  } else {
+    return "";
+  }
+});
 
 //configure app
 app.use(express.static('public'))

@@ -6,6 +6,7 @@ const item = require('./model/item/router');
 
 router.route('/').get((req, res) => {
   var data = {
+    title: "Home",
     proof: "Here's the proof"
   }
   res.render('index', data);
@@ -13,7 +14,7 @@ router.route('/').get((req, res) => {
 
 router.route('/login').get((req, res) => {
   var data = {
-    proof: "Here's the proof"
+    title: "Login"
   }
   res.render('login', data);
 });
