@@ -4,11 +4,16 @@ const router = new Router()
 
 router.route('/')
   .get((...args) => controller.find(...args))
-  .post((...args) => controller.create(...args))
+
+router.route('/register')
+  .post((...args) => controller.register(...args))
+
+router.route('/login')
+  .post((...args) => controller.login(...args))
 
 router.route('/:id')
-  .put((...args) => controller.update(...args))
-  .get((...args) => controller.findById(...args))
-  .delete((...args) => controller.remove(...args))
+  .put(controller.loginRequired, (...args) => controller.update(...args))
+  .get(controller.loginRequired, (...args) => controller.findById(...args))
+  .delete(controller.loginRequired, (...args) => controller.remove(...args))
 
 module.exports = router
