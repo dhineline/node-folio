@@ -19,6 +19,13 @@ router.route('/login').get((req, res) => {
   res.render('login', data);
 });
 
+router.route('/register').get((req, res) => {
+  var data = {
+    title: "Register"
+  }
+  res.render('register', data);
+});
+
 router.use('/api/user', user);
 router.use('/api/item', item);
 

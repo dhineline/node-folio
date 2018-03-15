@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 let node_modules_path = path.resolve(__dirname, 'node_modules');
 
@@ -11,6 +12,12 @@ module.exports = {
     path: path.resolve(__dirname, 'public/'),
     filename: '[name].js'
   },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
+    }),
+  ],
   module: {
     rules: [
       {
