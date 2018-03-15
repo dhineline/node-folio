@@ -14,14 +14,16 @@ router.route('/').get((req, res) => {
 
 router.route('/login').get((req, res) => {
   var data = {
-    title: "Login"
+    title: "Login",
+    layout: 'noheader'
   }
   res.render('login', data);
 });
 
 router.route('/register').get((req, res) => {
   var data = {
-    title: "Register"
+    title: "Register",
+    layout: 'noheader'
   }
   res.render('register', data);
 });

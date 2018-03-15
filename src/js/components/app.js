@@ -1,8 +1,9 @@
 class App {
 
-  constructor(user){
+  constructor(alertModule, user){
     let app = this;
     this.user = user;
+    this.alerts = alertModule;
     console.log('app created');
 
     //attach handlers for login/logout
@@ -64,6 +65,11 @@ class App {
         let values = app.getFormData(this);
         user.login(values);
       }
+    });
+
+    $('.logout').on('click', function(e) {
+      e.preventDefault();
+      app.user.logout();
     });
 
   }

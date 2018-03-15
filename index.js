@@ -62,6 +62,11 @@ app.use( (req, res, next) => {
 
 app.use('/', routes);
 
+app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).json(err)
+})
+
 app.listen(config.server.port, () => {
   console.log(`Magic happens on port ${config.server.port}`);
 })
