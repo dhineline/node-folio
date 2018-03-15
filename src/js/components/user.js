@@ -7,7 +7,7 @@ class User {
     this.profileModule = profileModule;
 
     //set the login/logout module
-    if(this.isLoggedIn()) {
+    if(thisUser.isLoggedIn()) {
       profileModule.displayProfile();
     } else {
       profileModule.displayLogin();
