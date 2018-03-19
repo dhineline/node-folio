@@ -22,11 +22,11 @@ const app = express();
 // set the view engine
 app.set('view engine', 'hbs');
 app.engine('hbs', hbs.express4({
-  defaultLayout: __dirname + '/src/views/layouts/default.hbs',
-  partialsDir: __dirname + '/src/views/partials',
-  layoutsDir: __dirname + '/src/views/layouts'
+  defaultLayout: __dirname + '/views/layouts/default.hbs',
+  partialsDir: __dirname + '/views/partials',
+  layoutsDir: __dirname + '/views/layouts'
 }));
-app.set('views', path.join(__dirname,'/src/views'));
+app.set('views', path.join(__dirname,'/views'));
 
 hbs.registerHelper("activePage", function(a, b) {
   if( a===b ) {
@@ -67,8 +67,8 @@ app.use(function (err, req, res, next) {
   res.status(500).json(err)
 })
 
-app.listen(config.server.port, () => {
+var server = app.listen(config.server.port, () => {
   console.log(`Magic happens on port ${config.server.port}`);
 })
 
-module.exports = app;
+module.exports = server;

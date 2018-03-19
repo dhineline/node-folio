@@ -6,9 +6,10 @@
   "scripts": {
     "build": "webpack",
     "build-watch": "webpack --watch",
-    "start-watch": "nodemon index.js",
+    "start-watch": "nodemon ./app/app.js",
     "dev": "concurrently --kill-others \"npm run build-watch\" \"npm run start-watch\"",
-    "start": "webpack && node index.js"
+    "start": "webpack && node ./app/app.js",
+    "test": "jest"
   },
   "author": "Douglas Hineline",
   "license": "ISC",
@@ -16,9 +17,12 @@
     "concurrently": "^3.5.1",
     "css-loader": "^0.28.10",
     "extract-text-webpack-plugin": "^4.0.0-alpha.0",
+    "jest": "^22.4.2",
     "node-sass": "^4.7.2",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
+    "superagent": "^3.8.2",
+    "supertest": "^3.0.0",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.12"
   },
