@@ -28,7 +28,6 @@ describe('Test the item api paths', () => {
       expect(res.statusCode).toBe(200);
       expect(res.body).toContainEqual(
         expect.objectContaining({
-          __v : expect.anything(),
           _id: expect.anything(),
           title: testItems[0].title,
           description: testItems[0].description
