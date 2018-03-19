@@ -1,0 +1,26 @@
+{
+  "collections": {
+    "users": [
+      {
+        "__v": 0,
+        "email": "test@afterth.at",
+        "password": "2234234234234234234234"
+      },
+      {
+        "__v": 0,
+        "email": "dhineline@gmail.com",
+        "password": "2234234234234234234234",
+        "first": "Douglas",
+        "last": "Hineline"
+      }
+      ,
+      {
+        "__v": 0,
+        "email": "test2@test.com",
+        "password": "2234234234234234234234",
+        "first": "Douglas",
+        "last": "Hineline"
+      }
+    ]
+  }
+}
