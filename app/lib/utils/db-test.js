@@ -1,5 +1,6 @@
 const mongoClient = require('mongodb').MongoClient
 const async = require('async')
+
 const config = require('./../../config')
 
 var PRODUCTION_URI = config.mongo.url;

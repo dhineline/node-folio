@@ -1,5 +1,4 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const jwtauth = require('../../lib/middleware/jwtauth');
 
 const Controller = require('../../lib/controller')
 const userFacade = require('./facade')
@@ -11,8 +10,8 @@ class UserController extends Controller {
   register (req, res, next) {
     this.facade.create(req.body)
       .then((user) => {
-        user.password = bcrypt.hashSync(req.body.password, 10);
-        let token = jwt.sign({ email: user.email, first: user.first, last: user.last, _id: user._id}, '999eee000kkk');
+        user.password = jwtauth.hash(req.body.password);
+        let token = jwtauth.sign({ email: user.email, first: user.first, last: user.last, _id: user._id});
 
         user.save((err, user) => {
           if (err) {
@@ -39,7 +38,7 @@ class UserController extends Controller {
           if (!user.comparePassword(req.body.password)) {
             res.status(401).json({ message: 'Authentication failed. Wrong password.' });
           } else {
-            return res.json({token: jwt.sign({ email: user.email, first: user.first, last: user.last, _id: user._id}, '999eee000kkk')});
+            return res.json({token: jwtauth.sign({ email: user.email, first: user.first, last: user.last, _id: user._id})});
           }
         } else {
           res.status(401).json({ message: 'Authentication failed. User not found.' });

@@ -6,6 +6,9 @@ const config = {
   mongo: {
     url: process.env.MONGODB_URI || 'mongodb://localhost/node-folio',
     db: 'node-folio'
+  },
+  auth: {
+    secret: '999eee000kkk'
   }
 }
 

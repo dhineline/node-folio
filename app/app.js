@@ -53,7 +53,7 @@ app.use('/', routes);
 app.use(jsonerror.errorResponse)
 
 var server = app.listen(config.server.port, () => {
-  console.log(`Magic happens on port ${config.server.port}`);
+  console.log(`App running on port ${config.server.port}`);
 })
 
 module.exports = server;
