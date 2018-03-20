@@ -6,8 +6,9 @@ const morgan = require('morgan');
 const bluebird = require('bluebird');
 const hbs = require('express-hbs');
 const path = require('path');
-const jwt = require('jsonwebtoken');
 
+const jwtauth = require('./lib/middleware/jwtauth');
+const jsonerror = require('./lib/middleware/jsonerror');
 const config = require('./config');
 const routes = require('./routes');
 
@@ -44,28 +45,12 @@ app.use(bodyParser.json());
 app.use(morgan('tiny'));
 
 // add auth middleware
-app.use( (req, res, next) => {
-  if(req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT'){
-    jwt.verify(req.headers.authorization.split(' ')[1], '999eee000kkk', (err, decoded) => {
-      if(err){
-        req.user = undefined;
-      } else {
-        req.user = decoded;
-      }
-      next();
-    })
-  } else {
-    req.user = undefined;
-    next();
-  }
-});
+app.use(jwtauth.getUser);
 
 app.use('/', routes);
 
-app.use(function (err, req, res, next) {
-  console.error(err.stack)
-  res.status(500).json(err)
-})
+// add nice json errors
+app.use(jsonerror.errorResponse)
 
 var server = app.listen(config.server.port, () => {
   console.log(`Magic happens on port ${config.server.port}`);
