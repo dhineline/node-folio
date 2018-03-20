@@ -35,7 +35,7 @@ exports.fixtures = function(data, done) {
         if (err) return cb(err)
         collection.insert(data.collections[name], cb)
       })
-    }, (done))
+    }, done)
   })
 
 }
