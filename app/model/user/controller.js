@@ -11,17 +11,16 @@ class UserController extends Controller {
     this.facade.create(req.body)
       .then((user) => {
         user.password = jwtauth.hash(req.body.password);
-        let token = jwtauth.sign({ email: user.email, first: user.first, last: user.last, _id: user._id});
+        user.token = jwtauth.sign({ email: user.email, first: user.first, last: user.last, _id: user._id});
 
         user.save((err, user) => {
           if (err) {
             return res.status(400).json({message: err});
           } else {
             user.password = undefined;
-            return res.status(201).json({token});
+            return res.status(201).json({token: user.token});
           }
         });
-
       })
       .catch(err => next(err))
   }
@@ -38,7 +37,14 @@ class UserController extends Controller {
           if (!user.comparePassword(req.body.password)) {
             res.status(401).json({ message: 'Authentication failed. Wrong password.' });
           } else {
-            return res.json({token: jwtauth.sign({ email: user.email, first: user.first, last: user.last, _id: user._id})});
+            user.token = jwtauth.sign({ email: user.email, first: user.first, last: user.last, _id: user._id});
+            user.save((err, user) => {
+              if (err) {
+                return res.status(400).json({message: err});
+              } else {
+                return res.status(200).json({token: user.token});
+              }
+            })
           }
         } else {
           res.status(401).json({ message: 'Authentication failed. User not found.' });
@@ -47,14 +53,6 @@ class UserController extends Controller {
       .catch(err => next(err))
   }
 
-  //check to see if the user is signed in
-  loginRequired (req, res, next) {
-    if(req.user) {
-      next();
-    } else {
-      return res.status(401).json({ message: 'Unauthorized user!' });
-    }
-  }
 }
 
 module.exports = new UserController(userFacade)

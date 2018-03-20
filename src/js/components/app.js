@@ -72,6 +72,16 @@ class App {
       app.user.logout();
     });
 
+    $('a').on('click', function(e) {
+      let href = $(this).attr('href');
+      if(href && href !== '' && href !== '#'){
+        if( location.hostname === this.hostname || !this.hostname.length ) {
+          app.user.redirect(href);
+          e.preventDefault();
+        }
+      }
+    });
+
   }
 
   getFormValuesFromButton(button) {

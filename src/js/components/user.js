@@ -84,6 +84,15 @@ class User {
     return this.storage.removeItem('JWT');
   }
 
+  redirect(url) {
+    if(this.isLoggedIn()) {
+      $('#redirect-form').html('<form action="'+url+'" name="redirect-now" method="post" style="display:none;"><input type="text" name="token" value="' + this.getToken() + '" /></form>');
+      document.forms['redirect-now'].submit();
+    } else {
+      window.location(url);
+    }
+  }
+
   register(values){
     if(values.email && values.email != '' && values.password && values.password != ''){
 
