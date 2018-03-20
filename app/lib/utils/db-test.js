@@ -5,21 +5,8 @@ const config = require('./../../config')
 var PRODUCTION_URI = config.mongo.url;
 var PRODUCTION_DB = config.mongo.db;
 
-exports.drop = function(done) {
-  connect((done)=>{
-    async.each(state.db.collections,
-      function(collection, cb){
-        if (collection.collectionName.indexOf('system') === 0) {
-          return cb()
-        }
-        collection.remove(cb)
-      },
-      function(err){
-        done()
-      });
-  })
 
-}
+//TODO dry this out.  pull out mongo connect into a reusable function
 
 exports.drop = function(done) {
   //Get the connection
