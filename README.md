@@ -23,9 +23,11 @@ git@github.com:dhineline/node-folio.git
 npm install
 ```
 3.  Start Your Mongo Database
+
 Navigate to the bin where you installed your mongo app and start the mongo database.  PRO TIP:  Linux users, update your .bashrc or .profile with an alias for this command  ;)
 
 4.  Build the App
+
 This project utilizes webpack as a build tool.  In your package.json file you'll notice we've setup all the build and run commands for you.
 
 ```javascript
@@ -62,9 +64,9 @@ The default state of the app includes two models, items and users.  To add a new
 The user model has custom controller actions added that are used for the auth process.  This also serves as a good example of how to extend the controller of any new model with custom methods.
 
 ## Authentication
-For Authentication and Authorization the node-folio uses JSON Web Tokens.  A simple piece of middleware lives inside of /app/lib/middleware.  To require login for any route, simple require this file at the top of your file and use the exported function from
-the file as middleware for your request:
+For Authentication and Authorization the node-folio uses JSON Web Tokens.  A simple piece of middleware lives inside of /app/lib/middleware.  To require login for any route, simple require this file and call the loginRequired function in your route declaration:
 ```javascript
+const jwtauth = require('./../../lib/middleware/jwtauth')
 
 router.route('/:id')
   .put(jwtauth.loginRequired, (...args) => controller.update(...args))
