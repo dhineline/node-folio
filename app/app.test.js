@@ -13,8 +13,8 @@ describe('Test the root paths', () => {
         return request(app).get('/').expect(200);
     });
 
-    test('It should not respond to root post', () => {
-        return request(app).post('/').expect(404);
+    test('It should respond to root post', () => {
+        return request(app).post('/').expect(200);
     });
 
     test('It should not respond to root patch', () => {
@@ -38,7 +38,7 @@ describe('Test the /register paths', () => {
     });
 
     test('It should not respond to /register post', () => {
-        return request(app).post('/').expect(404);
+        return request(app).post('/').expect(200);
     });
 
     test('It should not respond to /register patch', () => {
@@ -62,7 +62,7 @@ describe('Test the /register paths', () => {
     });
 
     test('It should not responde to /login post', () => {
-        return request(app).post('/').expect(404);
+        return request(app).post('/').expect(200);
     });
 
     test('It should not responde to /login patch', () => {
