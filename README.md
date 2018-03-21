@@ -8,7 +8,7 @@ sources below.
 This was also my first attempt at writing a JWT auth from scratch.  It is setup to pass JWT as either Authorization: JWT [token] in the header for /api endpoints or {token: [token]} as a POST parameter for standard page urls.
 
 ## Requirements
-In order to run node-folio you will need a machine with [Node](https://nodejs.org/en/ Nodejs.org), [Ruby](https://www.ruby-lang.org/en/downloads/ The Ruby Language) and [Mongo](https://www.mongodb.com/ MongoDB) installed.
+In order to run node-folio you will need a machine with [Node](https://nodejs.org/en/ Nodejs.org "Nodejs.org"), [Ruby](https://www.ruby-lang.org/en/downloads/ "The Ruby Language") and [Mongo](https://www.mongodb.com/ "MongoDB") installed.
 
 Node is the code that runs the server.  Ruby is used to compile the bootstrap scss.  Mongo is the database.
 
