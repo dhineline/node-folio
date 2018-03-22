@@ -1,0 +1,30 @@
+{{#contentFor 'body'}}
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <h1>Items</h1>
+        <p><button class="btn btn-primary btn-large">New Item</button></p>
+
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+            <h2>Items</h2>
+            {{#if items}}
+              <ol>
+                {{#each items}}
+
+                  <li>
+                    <h3>{{this.title}}</h3>
+                    <p>{{this.description}}</p>
+                  </li>
+                  
+                {{/each}}
+              </ol>
+            {{else}}
+              <p>No Items</p>
+            {{/if}}
+        </div>
+      </div>
+
+
+{{/contentFor}}
