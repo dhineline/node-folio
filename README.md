@@ -16,7 +16,7 @@ Node is the code that runs the server.  Ruby is used to compile the bootstrap sc
 
 1.  Clone the Repo:
 ```
-git@github.com:dhineline/node-folio.git
+git clone git@github.com:dhineline/node-folio.git my-node-folio
 ```
 2.  Install dependencies
 ```
