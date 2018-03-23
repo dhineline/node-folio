@@ -67,6 +67,35 @@ class App {
       }
     });
 
+    $('#itemForm').submit(function(e) {
+      e.preventDefault();
+
+      var options = {
+        rules: {
+          title: {
+            required: true,
+            minlength: 3,
+            maxlength: 56
+          },
+          description: {
+            required: true,
+            minlength: 3,
+            maxlength: 256
+          }
+        },
+        messages: {
+          title: 'A title is required and can be up to 56 characters',
+          description: 'A description of up to 256 characters is required'
+        }
+      };
+
+      $(this).validate(options);
+      if($(this).valid()){
+        let values = app.getFormData(this);
+        user.newItem(values);
+      }
+    });
+
     $('.logout').on('click', function(e) {
       e.preventDefault();
       app.user.logout();

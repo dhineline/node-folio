@@ -3,12 +3,13 @@
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron">
         <h1>Items</h1>
-        <p><button class="btn btn-primary btn-large">New Item</button></p>
-
       </div>
       <div class="row">
+
         <div class="col-md-12">
             <h2>Items</h2>
+
+
             {{#if items}}
               <ol>
                 {{#each items}}
@@ -17,13 +18,44 @@
                     <h3>{{this.title}}</h3>
                     <p>{{this.description}}</p>
                   </li>
-                  
+
                 {{/each}}
               </ol>
             {{else}}
               <p>No Items</p>
             {{/if}}
+
+            <p><button id="newItemButton" class="btn btn-primary btn-large" onClick="$(this).toggle();$('#itemFormRow').toggle();">New Item</button></p>
+
+            <div class="row" id="itemFormRow" style="display:none;">
+                <div class="col-md-3">&nbsp;</div>
+                <div class="col-md-6">
+                    <form id="itemForm">
+                      <h2 class="text-center p-b-20">Add a new Item</h2>
+                      <div class="form-group">
+                        <label for="inputTitle" class="sr-only">Title</label>
+                        <input type="text" name="title" id="inputTitle" class="form-control" placeholder="Title" required autofocus>
+                      </div>
+                      <div class="form-group">
+                        <label for="inputDescription" class="sr-only">Description</label>
+                        <input type="text" id="inputDescription" name="description" class="form-control" required>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-xs-6">
+                          <button onClick="$('#newItemButton').toggle();$('#itemFormRow').toggle();" id="cancelItemSaveButton" class="btn btn-lg btn-default btn-block">Cancel</button>
+                        </div>
+                        <div class="col-xs-6 p-l-0">
+                          <button id="itemSaveButton" class="btn btn-lg btn-primary btn-block" type="submit">Save Item</button>
+                        </div>
+                      </div>
+                    </form>
+                </div>
+                <div class="col-md-3">&nbsp;</div>
+            </div>
+
         </div>
+
       </div>
 
 

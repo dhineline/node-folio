@@ -72,6 +72,48 @@ class User {
     }
   }
 
+  newItem(values){
+    if(values.title && values.title != '' && values.description && values.description != ''){
+      let postValues = $.param(values);
+      let thisUser = this;
+
+      let myRequest = {
+        method: 'post',
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+          "Authorization": "JSON " + this.getToken()
+        },
+        body: postValues
+      };
+
+      fetch('api/item', myRequest)
+        .then(
+          function(response) {
+            if (response.status !== 201 && response.status !== 401) {
+              response.json().then(function(data) {
+                if (data.message){
+                  thisUser.alerts.alertMessage('Error '+response.status+' : '+ data.message);
+                } else {
+                  thisUser.alerts.alertMessage('Unknown Error '+response.status);
+                }
+              });
+              return;
+            } else if(response.status == 401) {
+              thisUser.redirect('/login');
+            } else {
+              thisUser.redirect('/items');
+            }
+          }
+        )
+        .catch(function(err) {
+          throw 'Oh no. '+ err;
+        });
+
+    } else {
+      throw 'Both Fields are required'
+    }
+  }
+
   getToken() {
     return this.storage.getItem('JWT');
   }
@@ -89,7 +131,7 @@ class User {
       $('#redirect-form').html('<form action="'+url+'" name="redirect-now" method="post" style="display:none;"><input type="text" name="token" value="' + this.getToken() + '" /></form>');
       document.forms['redirect-now'].submit();
     } else {
-      window.location(url);
+      window.location= url;
     }
   }
 
