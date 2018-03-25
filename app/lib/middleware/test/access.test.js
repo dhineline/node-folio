@@ -1,4 +1,4 @@
-const access = require('./../access');
+const {access} = require('./../access');
 
 describe('Test Role Based Access Business Logic', () => {
   test('admins should be do anything with items except change the ids of existing items', () => {
