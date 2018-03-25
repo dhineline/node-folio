@@ -1,6 +1,6 @@
 const accessControl = require('accesscontrol');
 
-let grantsObject = {
+let grants = {
     admin: {
         item: {
           'create:any': ['*'],
@@ -30,6 +30,6 @@ let grantsObject = {
     }
 };
 
-const access = new accessControl(grantsObject);
+const access = new accessControl(grants);
 
-module.exports = access
+module.exports = {access, grants}

@@ -1,7 +1,10 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
+const access = require('./access');
 const config = require('./../../config');
+
+let _this = this;
 
 //note this supports passing the token in a JWT authorization string in the header
 //or in a 'token' POST variable
@@ -17,7 +20,7 @@ module.exports.getUser = (req, res, next) => {
       next();
     })
   } else if(req.body && req.body.token) {
-    jwt.verify(req.body.token, '999eee000kkk', (err, decoded) => {
+    jwt.verify(req.body.token, config.auth.secret, (err, decoded) => {
       if(err){
         req.user = undefined;
       } else {

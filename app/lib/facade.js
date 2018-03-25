@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 class Facade {
   constructor (name, schema) {
     this.Model = mongoose.model(name, schema);
+    this.name = name;
+    this.schema = schema;
   }
 
   create (body) {

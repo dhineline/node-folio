@@ -1,6 +1,7 @@
 class Controller {
   constructor (facade) {
     this.facade = facade
+    this.objectType = facade.name.toLowerCase();
   }
 
   create (req, res, next) {

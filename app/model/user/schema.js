@@ -32,6 +32,10 @@ const userSchema = new Schema({
     type: String,
     trim: true
   },
+  role: {
+    type: String,
+    default: 'user'
+  },
   token: {
     type: String
   }

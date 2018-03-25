@@ -11,7 +11,7 @@ class UserController extends Controller {
     this.facade.create(req.body)
       .then((user) => {
         user.password = jwtauth.hash(req.body.password);
-        user.token = jwtauth.sign({ email: user.email, first: user.first, last: user.last, _id: user._id});
+        user.token = jwtauth.sign({ email: user.email, first: user.first, last: user.last, _id: user._id, role: user.role});
 
         user.save((err, user) => {
           if (err) {
@@ -37,7 +37,7 @@ class UserController extends Controller {
           if (!user.comparePassword(req.body.password)) {
             res.status(401).json({ message: 'Authentication failed. Wrong password.' });
           } else {
-            user.token = jwtauth.sign({ email: user.email, first: user.first, last: user.last, _id: user._id});
+            user.token = jwtauth.sign({ email: user.email, first: user.first, last: user.last, _id: user._id, role: user.role});
             user.save((err, user) => {
               if (err) {
                 return res.status(400).json({message: err});
