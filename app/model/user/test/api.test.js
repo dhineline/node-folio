@@ -22,7 +22,7 @@ beforeEach(function(done) {
 
     //set a real token for authenticated endpoints
     let testID = new ObjectID();
-    testToken = jwtauth.sign({ email: testUsers.email, first: testUsers.first, last: testUsers.last, _id: testID});
+    testToken = jwtauth.sign({ role: testUsers[0].role, email: testUsers[0].email, first: testUsers[0].first, last: testUsers[0].last, _id: testUsers[0]._id});
 
     dbTest.fixtures(fixtures, done);
   })

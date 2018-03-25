@@ -23,8 +23,8 @@ beforeEach(function(done) {
 
     //set a real token for authenticated endpoints
     let testID = new ObjectID();
-    testToken = jwtauth.sign({ email: testUsers.email, first: testUsers.first, last: testUsers.last, _id: testID});
-
+    testToken = jwtauth.sign({ role: testUsers[0].role, email: testUsers[0].email, first: testUsers[0].first, last: testUsers[0].last, _id: testUsers[0]._id});
+     
     dbTest.fixtures(fixtures, done);
   })
 })
@@ -59,27 +59,5 @@ describe('Test the item api paths', () => {
       const res = await request(app).post('/api/item').send(newFixture).set('Authorization', 'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.XbPfbIHMI6arZ3Y922BhjWgQzWXcXNrz0ogtVhfEd2o');
       expect(res.statusCode).toBe(401);
     });
-
-    // test('It should update an item', done => {
-    //     request(app).put('/api/item')
-    //       .send()
-    //       .expect(200)
-    //       .end(done)
-    // });
-
-
-    // test('It should return an item by id', done => {
-    //     request(app).get('/api/item/'+)
-    //       .expect(200)
-    //       .end(done)
-    // });
-
-    // test('It should delete an item', done => {
-    //     request(app).delete('/api/item')
-    //       .expect(200)
-    //       .end(done)
-    // });
-
-
 
 });
